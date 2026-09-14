@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    margin: 0;
+
+}
+.box{
+    text-align: center;
+
+    width: 400px;
+    height: 400px;
+    padding: 12px;
+    text-align: center;  
+    margin-right: 25%;
+    margin-left: 25%;
+    margin-top: 25%;
+    margin-bottom: 25%;
+    margin:auto;
+    margin-top: 10%;
+    box-shadow: rgba(91, 86, 86, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  
+    
+}
+img{
+    width: 160px;
+    margin-top: 2px;
+}
+h4{
+   font-weight: bold;
+   margin-bottom: 30px;
+
+}
+.onee{
+
+width: 400px;
+height: 400px;
+padding: 32px;
+margin-bottom: 10px;
+text-align: center;
+box-shadow: rgba(29, 25, 25, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+}
