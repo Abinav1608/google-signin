@@ -1,27 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google login</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign in - Google Accounts</title>
 
+<!-- Bootstrap 5 CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Google's own "Product Sans"-ish stand-in: Roboto -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --g-blue:#1a73e8;
+    --g-blue-dark:#174ea6;
+    --g-red:#ea4335;
+    --g-yellow:#fbbc04;
+    --g-green:#34a853;
+    --g-border:#dadce0;
+    --g-text:#202124;
+    --g-text-muted:#5f6368;
+  }
+  body{
+    font-family:'Roboto', Arial, sans-serif;
+    background:#fff;
+    color:var(--g-text);
+  }
+  .wordmark{
+    font-size:1.7rem;
+    font-weight:500;
+    letter-spacing:-0.5px;
+  }
+  .wordmark span:nth-child(1){color:var(--g-blue);}
+  .wordmark span:nth-child(2){color:var(--g-red);}
+  .wordmark span:nth-child(3){color:var(--g-yellow);}
+  .wordmark span:nth-child(4){color:var(--g-blue);}
+  .wordmark span:nth-child(5){color:var(--g-green);}
+  .wordmark span:nth-child(6){color:var(--g-red);}
+
+  .auth-card{
+    border:1px solid var(--g-border);
+    border-radius:8px;
+    padding:2.5rem 2.5rem 1.5rem;
+    max-width:450px;
+    width:100%;
+  }
+  @media (max-width:576px){
+    .auth-card{ border:none; padding:1.5rem 1.25rem; }
+  }
+
+  .auth-card h1{
+    font-size:1.55rem;
+    font-weight:400;
+    margin-bottom:0.15rem;
+  }
+  .auth-card .subtitle{
+    font-size:1rem;
+    color:var(--g-text);
+  }
+
+  .form-floating > .form-control{
+    border-radius:4px;
+    border-color:var(--g-border);
+  }
+  .form-floating > .form-control:focus{
+    border-color:var(--g-blue);
+    border-width:2px;
+    box-shadow:none;
+  }
+  .form-floating > label{ color:var(--g-text-muted); }
+
+  .btn-google-primary{
+    background:var(--g-blue);
+    border-color:var(--g-blue);
+    border-radius:4px;
+    font-weight:500;
+    padding:.55rem 1.5rem;
+  }
+  .btn-google-primary:hover{
+    background:var(--g-blue-dark);
+    border-color:var(--g-blue-dark);
+  }
+  .btn-link-plain{
+    color:var(--g-blue);
+    font-weight:500;
+    text-decoration:none;
+    padding:.55rem .5rem;
+  }
+  .btn-link-plain:hover{ text-decoration:underline; }
+
+  .btn-outline-provider{
+    border-color:var(--g-border);
+    color:var(--g-text);
+    border-radius:4px;
+    font-weight:500;
+    text-align:left;
+  }
+  .btn-outline-provider:hover{
+    background:#f8f9fa;
+    color:var(--g-text);
+    border-color:var(--g-border);
+  }
+
+  .lang-select{
+    border:none;
+    background:transparent;
+    color:var(--g-text-muted);
+    font-size:.8rem;
+  }
+  footer a{
+    color:var(--g-text-muted);
+    font-size:.8rem;
+    text-decoration:none;
+  }
+  footer a:hover{ text-decoration:underline; }
+
+  .step-dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--g-border);
+    display:inline-block;
+  }
+  .step-dot.active{ background:var(--g-blue); width:22px; border-radius:4px; }
+</style>
 </head>
-<body>
-    <div class="box">
-        <form action="#" calss="onee">
-            <img src="logo.png" alt="google">
-            <h4 class="one">Sign in</h4>
-        </form>
-        <div class="formgroup">
-            <label for="" class="formlable">Email or Phone</label><br>
-            <input type="text" class="form-control" >
-        </div>
-        <div class="formgroup">
-            <label for="" class="formlable">Enter Your password</label><br>
-            <input type="password" class="form-control">
-        </div>
+<body class="d-flex flex-column min-vh-100">
+
+<main class="flex-grow-1 d-flex align-items-center justify-content-center py-5 px-3">
+  <div class="w-100" style="max-width:450px;">
+
+    <div class="text-center mb-3">
+      <span class="wordmark">
+        <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
+      </span>
     </div>
-    
+
+    <div class="auth-card mx-auto shadow-sm">
+
+      <!-- Step indicator: purely illustrative of the real multi-step Google flow -->
+      <div class="d-flex justify-content-center gap-2 mb-4">
+        <span class="step-dot active"></span>
+        <span class="step-dot"></span>
+      </div>
+
+      <h1>Sign in</h1>
+      <p class="subtitle mb-4">Use your Google Account</p>
+
+      <form novalidate>
+        <div class="form-floating mb-2">
+          <input type="text" class="form-control" id="identifierInput" placeholder="Email or phone" autocomplete="username">
+          <label for="identifierInput">Email or phone</label>
+        </div>
+
+        <a href="#" class="btn-link-plain d-inline-block mb-4 ps-0">Forgot email?</a>
+
+        <p class="text-muted small mb-4">
+          Not your computer? Use a private browsing window to sign in.
+          <a href="#" class="btn-link-plain d-inline p-0">Learn more about using guest mode</a>
+        </p>
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+          <a href="#" class="btn-link-plain order-2 order-sm-1">Create account</a>
+          <button type="submit" class="btn btn-google-primary order-1 order-sm-2">Next</button>
+        </div>
+      </form>
+
+    </div>
+
+    <!-- New element: alternate sign-in providers, common on modern auth pages -->
+    <div class="mx-auto mt-3 auth-card shadow-sm py-3">
+      <p class="text-muted small mb-3">Or sign in with</p>
+      <div class="d-grid gap-2">
+        <button class="btn btn-outline-provider btn-sm d-flex align-items-center gap-2">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#000" d="M17.05 12.04c-.03-3.06 2.5-4.53 2.61-4.6-1.43-2.09-3.65-2.38-4.44-2.41-1.89-.19-3.7 1.11-4.66 1.11-.97 0-2.44-1.09-4.02-1.06-2.06.03-3.98 1.2-5.04 3.05-2.16 3.75-.55 9.29 1.55 12.33 1.03 1.49 2.26 3.16 3.87 3.1 1.55-.06 2.14-1 4.02-1 1.87 0 2.41 1 4.05.97 1.68-.03 2.74-1.52 3.76-3.02 1.19-1.73 1.68-3.41 1.7-3.5-.04-.02-3.26-1.25-3.29-4.98zM14.06 3.17c.85-1.03 1.42-2.46 1.27-3.88-1.22.05-2.71.81-3.59 1.83-.79.91-1.48 2.36-1.29 3.75 1.37.1 2.76-.68 3.61-1.7z"/></svg>
+          Apple ID
+        </button>
+        <button class="btn btn-outline-provider btn-sm d-flex align-items-center gap-2">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.07C24 5.94 19.06 1 12.93 1S1.86 5.94 1.86 12.07c0 5.54 4.06 10.13 9.37 10.96v-7.75H8.4v-3.21h2.83V9.6c0-2.8 1.66-4.34 4.2-4.34 1.22 0 2.49.22 2.49.22v2.74h-1.4c-1.38 0-1.81.86-1.81 1.74v2.09h3.08l-.49 3.21h-2.59v7.75c5.31-.83 9.37-5.42 9.37-10.96z"/></svg>
+          Facebook
+        </button>
+        <button class="btn btn-outline-provider btn-sm d-flex align-items-center gap-2">
+          <svg width="18" height="18" viewBox="0 0 24 24"><rect width="10" height="10" x="1" y="1" fill="#F25022"/><rect width="10" height="10" x="13" y="1" fill="#7FBA00"/><rect width="10" height="10" x="1" y="13" fill="#00A4EF"/><rect width="10" height="10" x="13" y="13" fill="#FFB900"/></svg>
+          Microsoft Account
+        </button>
+      </div>
+    </div>
+
+    <!-- New element: security / passkey notice, common on real Google sign-in -->
+    <div class="d-flex align-items-start gap-2 mt-3 px-2 px-sm-0">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="flex-shrink-0 mt-1">
+        <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke="#5f6368" stroke-width="1.5"/>
+        <path d="M9 12l2 2 4-4" stroke="#34a853" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="text-muted small mb-0">
+        You can sign in faster next time with a passkey instead of a password.
+      </p>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap gap-2 px-2 px-sm-0">
+      <select class="lang-select form-select form-select-sm w-auto">
+        <option>English (United States)</option>
+        <option>हिन्दी</option>
+        <option>தமிழ்</option>
+        <option>Español</option>
+      </select>
+      <div class="d-flex gap-3">
+        <a href="#">Help</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- Bootstrap JS bundle CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
